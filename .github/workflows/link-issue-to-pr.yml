@@ -1,0 +1,20 @@
+name: Link Issue to PR and Close on Merge
+
+on:
+  pull_request:
+    types: [opened, edited, closed, reopened, synchronize]
+
+jobs:
+  link-issue-to-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+
+    - name: Link issue to PR and close on merge
+      id: link-issue
+      uses: "marvinpinto/action-automatic-merge@v1.1.0"
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        branch_name: "test-tracking"
